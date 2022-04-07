@@ -52,7 +52,7 @@ export const GithubProvider = ({children}) => {
             }
         });
 
-        if(response.status === 404){
+        if(response.status === 404 || response.status === 401){
             window.location = '/notfound'
         }else{
             const data = await response.json()
@@ -83,10 +83,10 @@ export const GithubProvider = ({children}) => {
     return <GithubContext.Provider value={{
         users: state.users,
         loading: state.loading,
+        user: state.user,
         searchUsers,
         getUser,
         clearUsers,
-        user: state.user,
     }}>{children}</GithubContext.Provider>
 
 }
